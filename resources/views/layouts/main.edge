@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Adonis</title>
+    <link
+      rel="stylesheet"
+      href="http://localhost/doc/bs4/dist/css/bootstrap.css"
+    />
+    {{ style("jumbotron") }}
+    {{ style("style.css") }}
+  </head>
+  <body>
+    @include('partials.navbar')
+
+    <main role="main">
+      @!section('main')
+    </main>
+
+    <footer class="container">
+    @include('partials.footer')
+    </footer>
+    @include('partials.script')
+  </body>
+</html>
