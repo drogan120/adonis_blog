@@ -74,8 +74,8 @@ gulp.task("styles", () => {
 });
 
 gulp.task("watch", () => {
-  gulp.watch(path.stylesPath + "/**/*.scss", ["styles"]);
-  gulp.watch(path.jsPath + "/**/*.sjs", ["custom-js"]);
+  gulp.watch(path.stylesPath + "/**/*.scss", gulp.parallel("styles"));
+  gulp.watch(path.jsPath + "/**/*.sjs", gulp.parallel("custom-js"));
 });
 
-// gulp.task("default", ["watch", "vendor-js", "styles", "custom-js"]);
+gulp.task("default", gulp.series("watch", "vendor-js", "styles", "custom-js"));
