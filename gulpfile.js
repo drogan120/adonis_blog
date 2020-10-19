@@ -6,6 +6,7 @@ const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
 const sourceMaps = require("gulp-sourcemaps");
 const autoprefixer = require("gulp-autoprefixer");
+const merge = require("merge2");
 
 const path = {
   nodePath: "node_modules",
@@ -13,23 +14,29 @@ const path = {
   jsPath: "assets/js",
 };
 
-gulp.task("vendor-js", () => {
+gulp.task("move-icons", () => {
   return gulp
+    .src([path.nodePath + "/feather-icons/dist/icons/*.svg"])
+    .pipe(gulp.dest("./public/icons"));
+});
+
+gulp.task("vendor-js", () => {
+  const streamOne = gulp
     .src([
       path.nodePath + "/jquery/dist/jquery.min.js",
       path.nodePath + "/bootstrap/dist/js/bootstrap.bundle.js",
+      path.nodePath + "/feather-icons/dist/feather.js",
     ])
-    .pipe(sourceMaps.init())
-    .pipe(concat("vendor-script.js"))
-    .pipe(gulp.dest("public"))
     .pipe(
       uglify().on("error", (err) => {
         console.log(err);
       })
-    )
-    .pipe(rename({ suffix: ".min" }))
-    .pipe(gulp.dest("public"))
-    .pipe(sourceMaps.write("."))
+    );
+  const streamTwo = gulp.src([
+    path.nodePath + "/turbolinks/dist/turbolinks.js",
+  ]);
+  return merge(streamOne, streamTwo)
+    .pipe(concat("vendor-script.min.js"))
     .pipe(gulp.dest("public"));
 });
 

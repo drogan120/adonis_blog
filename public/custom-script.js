@@ -1,6 +1,2 @@
-"use strict";
-var thing = [1, 2, 3],
-  thing2 = function () {
-    console.log("loaded");
-  };
+"use strict";document.addEventListener("turbolinks:load",function(e){feather.replace()});
 //# sourceMappingURL=custom-script.js.map

@@ -9,6 +9,9 @@
     />
     {{ style("jumbotron") }}
     {{ style("style.css") }}
+    @!section('before-scripts')
+      @include('partials.common-scripts')
+    @!section('after-scripts')
   </head>
   <body>
     @include('partials.navbar')
