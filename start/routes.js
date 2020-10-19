@@ -18,3 +18,12 @@ const Route = use("Route");
 
 Route.on("/").render("welcome");
 Route.on("/page").render("welcome");
+
+// categories
+Route.get("categories", "CategoryController.index");
+Route.get("categories/add", "CategoryController.create");
+Route.get("categories/:slug", "CategoryController.show");
+Route.get("categories/edit/:id", "CategoryController.edit");
+
+Route.post("categories", "CategoryController.store");
+Route.put("categories/:id", "CategoryController.update");
