@@ -1,4 +1,39 @@
 @layout('layouts.main')
 @section('main')
-  Categories list
+<div class="container">
+  <div class="row categoryList">
+<div class="col-10 mx-auto mt-5">
+  @if(categories && categories.length > 0)
+    <div class="card">
+      <div class="card-body shadow">
+        <h4 class="text-secondary text-center mt-2 mb-4">List Category</h4>
+        <a href="/categories/add" class="btn btn-warning text-light mb-3">New Category</a>
+        <table class="table">
+      <thead>
+        <tr>
+          <th>x</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(category in categories)
+          <tr>
+            <td>x</td>
+            <td>{{category.name}}</td>
+            <td>{{category.description}}</td>
+            <td><a href="/categories/edit/{{category.id}}"><span data-feather="edit"></span></a></td>
+          </tr>
+          @endeach
+        </tbody>
+      </table>
+      </div>
+    </div>
+@else
+    <div class="alert alert-warning">You dont have any category</div>
+  @endif
+</div>
+</div>
+</div>
 @endsection

@@ -83,8 +83,8 @@ class CategoryController {
    */
   async edit({ params: { id }, request, response, view }) {
     const category = await Category.find(id).then((data) => data.toJSON());
-    response.header("Turbolinks-Location", "/categories.edit/" + id);
-    return view.render("categories.edit", { category });
+    response.header("Turbolinks-Location", "/categories/edit/" + id);
+    return view.render("categories.editor", { category });
   }
 
   /**

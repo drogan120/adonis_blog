@@ -7,9 +7,9 @@ class Category extends Model {
   static boot() {
     super.boot();
     this.addTrait("@provider:Lucid/Slugify", {
-      field: { slug: "cat_slug" },
+      fields: { slug: "cat_slug" },
       strategy: "dbIncrement",
-      disableUpdates: true,
+      disableUpdates: false,
     });
   }
 }
