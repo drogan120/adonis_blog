@@ -106,13 +106,20 @@ class CategoryController {
 
   /**
    * Delete a category with id.
-   * DELETE categories/:id
+   * DELETE categories/
+   *
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {}
+  async destroy({ params: id }, request, response) {
+    const category = await Category.find(id);
+    await category.delete();
+    return response.status("200").json({
+      deleted: true,
+    });
+  }
 }
 
 module.exports = CategoryController;

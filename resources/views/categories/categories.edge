@@ -1,7 +1,7 @@
 @layout('layouts.main')
 @section('main')
 <div class="container">
-  <div class="row categoryList">
+  <div class="row categoryList"  data-controller="categories">
 <div class="col-10 mx-auto mt-5">
   @if(categories && categories.length > 0)
     <div class="card">
@@ -21,9 +21,16 @@
         @each(category in categories)
           <tr>
             <td>x</td>
-            <td>{{category.name}}</td>
+            <td data-target="categories.category">{{category.name}}</td>
             <td>{{category.description}}</td>
             <td><a href="/categories/edit/{{category.id}}"><span data-feather="edit"></span></a></td>
+          <td><a href="#" data-action="click->categories#deleteCategory" data-category-id="{{category.id}}"><span data-feather="trash"></span></a></td>
+          <td>
+          <form action="/categories/{{category.id}}" method="DELETE">
+          {{ csrfField() }}
+          <button type="submit" class="btn btn-outline-danger"><span data-feather="trash"></span></button>
+          </form>
+          </td>
           </tr>
           @endeach
         </tbody>

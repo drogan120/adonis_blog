@@ -26,6 +26,7 @@ gulp.task("vendor-js", () => {
       path.nodePath + "/jquery/dist/jquery.min.js",
       path.nodePath + "/bootstrap/dist/js/bootstrap.bundle.js",
       path.nodePath + "/feather-icons/dist/feather.js",
+      path.nodePath + "/axios/dist/axios.js",
     ])
     .pipe(
       uglify().on("error", (err) => {
@@ -34,6 +35,7 @@ gulp.task("vendor-js", () => {
     );
   const streamTwo = gulp.src([
     path.nodePath + "/turbolinks/dist/turbolinks.js",
+    path.nodePath + "/stimulus/dist/stimulus.umd.js",
   ]);
   return merge(streamOne, streamTwo)
     .pipe(concat("vendor-script.min.js"))
@@ -42,7 +44,7 @@ gulp.task("vendor-js", () => {
 
 gulp.task("custom-js", () => {
   return gulp
-    .src([path.jsPath + "/**/*.js"])
+    .src([path.jsPath + "/Categories.js", path.jsPath + "/app.js"])
     .pipe(sourceMaps.init())
     .pipe(babel({ presets: ["@babel/preset-env"] }))
     .pipe(concat("custom-script.js"))
