@@ -43,6 +43,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
     "axios": "^0.20.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "feather-icons": "^4.28.0",
     "merge2": "^1.4.1",
     "stimulus": "^1.1.1",
