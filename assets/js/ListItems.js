@@ -7,9 +7,9 @@ class ListItems extends Stimulus.Controller {
   }
   destroyItem(e) {
     e.preventDefault();
-    return axios
-      .delete(`http://localhost:3333/${this.path}/${this.itemID}`)
-      .then((res) => location.reload());
+    return Axios.delete(
+      `http://localhost:3333/${this.path}/${this.itemID}`
+    ).then((res) => location.reload());
   }
   get itemID() {
     return this.data.get("id");
